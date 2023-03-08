@@ -1,9 +1,38 @@
+
 import "./Calendar.css";
 
+const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
 export default function Calendar() {
-    const today = JSON.stringify(new Date());
-    const year = today.slice(1, 5);
-    const day = today.slice(9, 11)
+    const todayObj = new Date();
+    const todayStr = JSON.stringify(todayObj);
+    const year = todayStr.slice(1, 5);
+    function getDateInt(dateStr) {
+        if (dateStr.slice(9, 11).slice(0,1) == 0) {
+            return parseInt(dateStr.slice(9, 11).slice(1,2));
+        } else {
+            return parseInt(dateStr.slice(9, 11))
+        }
+    }
+    const day = getDateInt(todayStr);
+    const dayOfWeek = todayObj.getDay();
+    function getMonthInt(month) {
+        if (month.slice(0,1) == 0) {
+            return parseInt(month.slice(1,2));
+        } else {
+            return parseInt(month);
+        }
+    };
+    const month = getMonthInt(todayStr.slice(6, 8))
+
+    function getFistDayOfMonth(day, dayOfWeek) {
+        console.log(day + dayOfWeek)
+        return day + dayOfWeek
+    }
+
+    const numEmptyDivs = getFistDayOfMonth(day, dayOfWeek)
+    const emptyDivsArray = Array(numEmptyDivs).fill().map((_, idx) => <div className="calendarDays" key={idx}>empty</div>)
+
     const calendarDays = [
         {
             name: "January",
@@ -52,29 +81,13 @@ export default function Calendar() {
             name: "December",
             noDays: 31,
         },
-    ]
-    
-    function getMonth(month) {
-        if (month.slice(0,1) == 0) {
-            return parseInt(month.slice(1,2));
-        } else {
-            return parseInt(month);
-        }
-    };
+    ];
 
-    function getDayOfWeek(num) {
-        return <div>{num}</div>
-    }
-
-    const monthIdx = getMonth(today.slice(6, 8)) - 1;
-
-    const dayOfWeek = getDayOfWeek(12)
-
-    const divsArray = Array(calendarDays[monthIdx].noDays).fill().map((_, idx) => <div className="calendarDays" key={idx}> {idx + 1}</div>)
+    const divsArray = Array(calendarDays[month - 1].noDays).fill().map((_, idx) => <div className="calendarDays" key={idx}> {idx + 1}</div>)
 
     return (
         <div className="calendarPageContainer">
-            <div className="pageTitle">{calendarDays[monthIdx].name}:</div>
+            <div className="pageTitle">{calendarDays[month - 1].name}:</div>
             <div className="calendarContainer">
                 <div className="daysOfWeek">
                     <div id="Sunday"> Sunday</div>
@@ -85,7 +98,7 @@ export default function Calendar() {
                     <div id="Friday"> Friday</div>
                     <div id="Saturday"> Saturday</div>
                 </div>
-                {dayOfWeek}
+                {emptyDivsArray}
                 {divsArray}
             </div>
         </div>

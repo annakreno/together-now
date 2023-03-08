@@ -11,14 +11,14 @@
     background-color: white;
     border: 4px solid orange;
     display: grid;
-    grid-template-columns: fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: .3fr 1fr 1fr 1fr 1fr 1fr;
     height: 65vh;
     width: 65vw;
 }
 
 .calendarDays {
-    border: 1px solid red;
+    border: 1px solid gainsboro;
     display: flex;
     justify-content: center;
     align-items: center;
