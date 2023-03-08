@@ -1,3 +1,5 @@
-# MERN-Stack Infrastructure
+# Together Now
 
-Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
+a tool to help manage social relationships & keep track of commitments
+
+

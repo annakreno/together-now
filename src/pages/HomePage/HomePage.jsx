@@ -13,8 +13,8 @@ export default function HomePage({user, setUser}) {
                     <span>friend</span>
                     <span>sibling</span>
                     <span>partner</span>
-                    <span>parent</span>
                     <span>child</span>
+                    <span>parent</span>
                 </div>
             </div>
 
