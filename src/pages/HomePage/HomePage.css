@@ -19,8 +19,6 @@
 }
 
 #title {
-    /* position: fixed; */
-    /* background-color: green; */
     color: rgba(221, 255, 237, 1);
     grid-row: 4/6;
     font-size: 75px;
@@ -30,7 +28,6 @@
 }
 
 #subtitle {
-    /* position: relative; */
     background-color: rgba(221, 255, 237, 1);
     width: 60vw;
     border-radius: 100px;
@@ -41,7 +38,6 @@
 #tagline {
     position: relative;
     color: rgba(221, 255, 237, 1);
-    /* position: relative; */
     grid-row: 6/7;
     box-sizing: content-box;
     height: 30px;

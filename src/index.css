@@ -1,3 +1,82 @@
+.App {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(221, 255, 237, 1);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+
+.pageContainer {
+  background-color: rgba(221, 255, 237, 1);
+  height: 100%;
+  width: 100%;
+  
+
+}
+
+.pageTitle {
+  grid-column: 1 / 4;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.listComponentsContainer {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(300px, auto);
+  justify-items: start;
+  align-items: start;
+  padding: 5%;
+}
+
+.listComponent {
+  background-color: white;
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 0 7px gray);
+  border-radius: 3px;
+  z-index: 0;
+  
+}
+
+.listCompDetailsWrapper {
+  /* background-color: red; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  border-radius: 3px;
+
+}
+
+.detailsContainer {
+  grid-column: 1/4;
+  background-color: white;
+  filter: drop-shadow(0 0 7px gray);
+  border-radius: 3px;
+  height: 100%;
+  width: 100%;
+
+    
+}
+
+
 /* :root {
   --white: #FFFFFF;
   --tan-1: #FBF9F6;

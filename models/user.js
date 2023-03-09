@@ -16,7 +16,15 @@ const userSchema = new Schema({
     password: {
       type: String,
       required: true
-    }
+    },
+    people:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Person',
+    }],
+    commitments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Commitment',
+    }],
 }, {
     timestamps: true,
     toJSON: {
