@@ -3,38 +3,42 @@ import {useState, useEffect } from "react";
 import * as commitmentsAPI from '../../utilities/commitments-api';
 import NewCommitmentForm from "../../components/NewCommitmentForm/NewCommitmentForm"
 
-export default function CommitmentsList() {
-    const [commitments, setCommitments] = useState([]);
+export default function CommitmentsList({ user }) {
+    const [commitments, setCommitments ] = useState([])
+    const [ people, setPeople ] = useState([])
 
     useEffect(function() {
-        async function getMyCommitments() {
-            const myCommitments = await commitmentsAPI.getAll();
-            setCommitments(myCommitments);
+        async function getMyData() {
+            const profile = await commitmentsAPI.getAll();
+            setCommitments(profile.commitments);
+            setPeople(profile.people);
         };
-        getMyCommitments();
+        getMyData();
     }, [commitments]);
 
     return (
         <div className="pageContainer">
             <div className="pageTitle">My Commitments:</div>
             <div className="listComponentsContainer">
-                <NewCommitmentForm setCommitments={setCommitments}/>
+                <NewCommitmentForm commitments={commitments} setCommitments={setCommitments} user={user} people={people}/>
                 {
+                    commitments ? 
                     commitments.map((commitment, idx) =>
-                        <Link to={`/commitments/${JSON.stringify(commitment)}`} key={idx}>
+                        <Link to={`/commitments/${commitment._id}`} key={idx}>
                             <div className="listComponent" commitment={commitment} key={commitment._id}>
                                 <div className="listCompDetailsWrapper">
                                     <div>{ commitment.name }</div>
                                     <div>with: { commitment.people }</div>
-                                    <div>starts: { commitment.startDateTime }</div>
-                                    <div>ends: { commitment.endDateTime }</div>
+                                    <div>starts: { commitment.start }</div>
+                                    <div>ends: { commitment.end }</div>
                                     <div>location: { commitment.location }</div>
-                                    {/* <div>notes: { commitment.notes }</div> */}
+                                    <div>notes: { commitment.notes } </div>
                                     <div>status: { commitment.flexible }</div>
                                 </div>
                             </div>
                         </Link>
-                    )
+                    ) 
+                    : <></>
                 }
             </div>
         </div>

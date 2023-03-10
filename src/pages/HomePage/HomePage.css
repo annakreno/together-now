@@ -45,17 +45,31 @@
     border-radius: 8px;
     padding: 0;
     margin: 0;
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     background-color: rgba(254, 62, 68, 1);
     z-index: 1;
 }
 
-#carousel {
+#carouselContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100%;
     overflow: hidden;
+    font-size: smaller;
+
+}
+
+#carousel {
+    /* overflow: hidden; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    font-size: larger;
+    
 }
 
 span {
@@ -63,33 +77,37 @@ span {
     height: 100%;
     padding-left: 10px;
     animation: spin_carousel 6s infinite;
-    color: rgba(221, 255, 237, 1);
+    /* color: rgba(221, 255, 237, 1); */
+    color: white;
     z-index: -1;
 }
 
 @keyframes spin_carousel{
-    10%{
-        transform: translateY(212%);
-    }
-    25%{
+    0% {
         transform: translateY(200%);
     }
-    35%{
+    10%{
         transform: translateY(112%);
     }
-    50%{
+    25%{
         transform: translateY(100%);
     }
-    60%{
-        transform: translateY(12%);
+    35%{
+        transform: translateY(-12%);
     }
-    75%{
+    50%{
         transform: translateY(0%);
     }
-    85%{
+    60%{
         transform: translateY(-112%);
     }
-    100%{
+    75%{
         transform: translateY(-100%);
+    }
+    85%{
+        transform: translateY(-212%);
+    }
+    100%{
+        transform: translateY(-200%);
     }
 }

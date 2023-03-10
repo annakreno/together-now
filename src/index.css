@@ -1,22 +1,22 @@
 .App {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  text-align: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(221, 255, 237, 1);
+  height: 100%;
+  width: 100%;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
 }
 
 .pageContainer {
   background-color: rgba(221, 255, 237, 1);
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .pageTitle {
@@ -48,12 +48,11 @@
   align-items: center;
   filter: drop-shadow(0 0 7px gray);
   border-radius: 3px;
-  z-index: 0;
+  z-index: -1;
   
 }
 
 .listCompDetailsWrapper {
-  /* background-color: red; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -65,17 +64,139 @@
 
 }
 
+.detailsPageContainer {
+  background-color: rgba(221, 255, 237, 1);
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 5fr;
+  justify-items: center;
+  align-items: center;
+}
+
 .detailsContainer {
-  grid-column: 1/4;
   background-color: white;
   filter: drop-shadow(0 0 7px gray);
   border-radius: 3px;
+  display: grid;
+  justify-items: center;
   height: 100%;
   width: 100%;
-
-    
 }
 
+.addComponent {
+  background-color: rgb(241, 241, 241);
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 0 7px gray);
+  border-radius: 3px;
+  position: static;
+  z-index: 10;
+}
+
+.commitmentFormContainer {
+  overflow: hidden;
+  height: 0;
+  width: 0;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+
+.commitmentFormContainer:hover {
+  background: white;
+  color: rgb(223, 53, 59);
+  position: absolute;
+  left: -15%;
+  right: 0;
+  top: -20%;
+  bottom: 0;
+  width: 75vw;
+  height: 75vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10fr;
+  z-index: 10;
+}
+
+.addCommitmentForm {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 7, 1fr;
+  height: 100%;
+  width: 75%;
+  z-index: 10;
+
+}
+
+.formInputDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid orange; */
+
+}
+
+label {
+  display: inline-block;
+  width: 60px;
+  /* padding-left: 20px; */
+}
+
+input {
+  width: 300px;
+  display: flex;
+}
+
+select {
+  width: 306px;
+}
+
+textarea {
+  width: 302px;
+}
+
+.buttonDiv {
+  width: 57%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: rgba(255, 123, 126, 1);
+  height: 25px;
+  width: 200px;
+  color: rgba(221, 255, 237, 1);
+  border: 2px solid  rgba(254, 62, 68, 1);
+
+}
+
+button:hover {
+  background-color: rgba(254, 62, 68, 1);
+  height: 25px;
+  width: 200px;
+  border: 2px solid  rgba(255, 123, 126, 1);
+
+}
+
+.editComponent {
+  height: 100%;
+  width: 100%;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
 
 /* :root {
   --white: #FFFFFF;

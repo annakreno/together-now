@@ -1,29 +1,35 @@
 import {useParams} from "react-router-dom"
+import {useState, useEffect } from "react";
+import EditCommitmentForm from "../../components/EditCommitmentForm/EditCommitmentForm";
+import * as commitmentsAPI from '../../utilities/commitments-api';
 
-export default function CommitmentDetails() {
+export default function CommitmentDetails({user}) {
+    const [commitment, setCommitment ] = useState({})
+    const [ people, setPeople ] = useState([])
     const { id } = useParams();
-    const commitment = JSON.parse(id)
-    const people = commitment.people
-    function formatDate(date) {
-        console.log(date)
-    }
-    const startDateTime = "5pm"
-    const endDateTime = "7pm"
+
+    useEffect(function() {
+        async function getMyData() {
+            const profile = await commitmentsAPI.getAll();
+            const myCommitment = profile.commitments.filter(commitment => commitment._id == id )[0];
+            setCommitment((myCommitment));
+            setPeople(profile.people);
+        };
+        getMyData();
+    }, [commitment]);
+
     return (
-        <div className="pageContainer">
+        <div className="detailsPageContainer">
+            <div className="pageTitle"> About { commitment.name }:</div>
+            <EditCommitmentForm commitment={commitment} people={people} user={user}/>
             <div className="detailsContainer">
-                <div>{ commitment.name }</div>
-                <div>with: { people }</div>
-                <div>starts: { startDateTime }</div>
-                <div>ends: { endDateTime }</div>
-                <div>location: { commitment.location }</div>
-                <div>notes: { commitment.notes }</div>
-                <div>status: { commitment.flexible }</div>
-            </div>
-            
-        </div>)
+                    <div>with: { people } </div>
+                    <div>starts: { commitment.start }</div>
+                    <div>ends: { commitment.end }</div>
+                    <div>location: { commitment.location }</div>
+                    <div>notes: { commitment.notes }</div>
+                    <div>status: { commitment.flexible }</div>
+                </div>
+        </div>
+    )
 }
-
-
-
-

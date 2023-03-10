@@ -1,20 +1,19 @@
 import "./HomePage.css"
-import {Link} from "react-router-dom";
 
-
-export default function HomePage({user, setUser}) {
+export default function HomePage() {
     return (
         <>
         <div id="homePageContainer">
             <div id="title">TOGETHER NOW</div>
             <div id="tagline">
-                <p>be a better </p>
-                <div id="carousel">
-                    <span>friend</span>
-                    <span>sibling</span>
-                    <span>partner</span>
-                    <span>child</span>
-                    <span>parent</span>
+                <div id="carouselContainer">be a better
+                    <div id="carousel">
+                        <span>relative</span>
+                        <span>friend</span>
+                        <span>partner</span>
+                        <span>sibling</span>
+                        <span>relative</span>
+                    </div>
                 </div>
             </div>
 
