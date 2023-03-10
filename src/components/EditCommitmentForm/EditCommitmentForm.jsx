@@ -5,7 +5,6 @@ import * as commitmentsAPI from '../../utilities/commitments-api';
 export default function EditCommitmentForm({id, commitment, setCommitment, people}) {
     const navigate = useNavigate();
     const [formDetails, setFormDetails] = useState({
-        _id: id,
         name: commitment.name,
         start: commitment.start,
         end: commitment.end,
@@ -13,7 +12,6 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
         location: commitment.location,
         notes: commitment.notes,
         flexible: commitment.flexible,
-        error: "",
     })
 
     function handleChange(evt) {
@@ -40,21 +38,19 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
                 location: formDetails.location, 
                 notes: formDetails.notes, 
                 flexible: formDetails.flexible,
-                error: "success!"
             }
             const updatedCommitment = await commitmentsAPI.updateCommitment(formData);
-            setFormDetails({
-                _id: id,
-                name: commitment.name,
-                start: commitment.start,
-                end: commitment.end,
-                people: commitment.people,
-                location: commitment.location,
-                notes: commitment.notes,
-                flexible: commitment.flexible,
-                error: "",
-            })
             setCommitment(updatedCommitment)
+            setFormDetails({
+                name: "",
+                start: "",
+                end: "",
+                people: "",
+                location: "",
+                notes: "",
+                flexible: "",
+            })
+            
         } catch {
             setFormDetails({ ...formDetails, error: 'Failed To Update - Try Again' });
         }
@@ -116,7 +112,7 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
                             <button type="submit">Update</button>
                         </div>
                     </form>
-                    <p>{formDetails.error}</p>
+                    {formDetails.error ? <p>{formDetails.error}</p> : <></>}
                 </div>
             + -
         </div>

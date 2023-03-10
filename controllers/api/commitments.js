@@ -6,6 +6,7 @@ module.exports = {
   index,
   create,
   update,
+  delete: deleteOne
 };
 
 async function index(req, res) {
@@ -32,21 +33,33 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-  const reqObj = {
-    name: req.body.name,
-    start: req.body.start, 
-    end: req.body.end, 
-    people: req.body.people, 
-    location: req.body.location, 
-    notes: req.body.notes, 
-    flexible: req.body.flexible,
-  };
   try {
     const profile = await Profile.findOne({user: req.user._id});
-    const commitment = profile.commitments.find(commitment => commitment._id == req.params.id)
+    let commitment = profile.commitments.find(commitment => commitment._id == req.params.id)
+    commitment.name = req.body.name
+    commitment.start = req.body.start
+    commitment.end = req.body.end
+    commitment.people = req.body.people
+    commitment.location = req.body.location
+    commitment.notes = req.body.notes
+    commitment.flexible = req.body.flexible
     console.log("commitment:", commitment)
     await profile.save();
     res.json(commitment)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
+
+
+async function deleteOne(req, res) {
+  try {
+    const profile = await Profile.findOne({user: req.user._id});
+    // let commitment = profile.commitments.find(commitment => commitment._id == req.params.id)
+    profile.commitments.remove(req.params.id);
+    profile.save();
+    res.json("commitment deleted")
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });

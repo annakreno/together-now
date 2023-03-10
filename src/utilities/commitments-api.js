@@ -11,7 +11,11 @@ export function createCommitment(formData) {
 }
 
 export function updateCommitment(formData) {
-    return sendRequest(`${BASE_URL}/${formData._id}/edit`, 'POST', formData)
+    return sendRequest(`${BASE_URL}/${formData._id}/edit`, 'PUT', formData)
+}
+
+export function deleteCommitment(id) {
+    return sendRequest(`${BASE_URL}/${id}/delete`, 'DELETE')
 }
 
 // export function getById(id) {
