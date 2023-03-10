@@ -7,7 +7,11 @@ export function getAll() {
 }
 
 export function createCommitment(formData) {
-    return sendRequest(BASE_URL, 'POST', formData)
+    return sendRequest(`${BASE_URL}/new`, 'POST', formData)
+}
+
+export function updateCommitment(formData) {
+    return sendRequest(`${BASE_URL}/${formData._id}/edit`, 'POST', formData)
 }
 
 // export function getById(id) {

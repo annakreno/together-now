@@ -14,7 +14,7 @@ export default function CommitmentsList({ user }) {
             setPeople(profile.people);
         };
         getMyData();
-    }, [commitments]);
+    }, []);
 
     return (
         <div className="pageContainer">

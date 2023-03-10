@@ -1,4 +1,4 @@
-.App {
+/* .App {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -143,14 +143,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid orange; */
 
 }
 
 label {
   display: inline-block;
   width: 60px;
-  /* padding-left: 20px; */
 }
 
 input {
@@ -196,7 +194,7 @@ button:hover {
   background-color: aqua;
   display: flex;
   justify-content: center;
-}
+} */
 
 /* :root {
   --white: #FFFFFF;

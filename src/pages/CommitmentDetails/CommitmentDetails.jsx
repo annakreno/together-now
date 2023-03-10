@@ -11,17 +11,17 @@ export default function CommitmentDetails({user}) {
     useEffect(function() {
         async function getMyData() {
             const profile = await commitmentsAPI.getAll();
-            const myCommitment = profile.commitments.filter(commitment => commitment._id == id )[0];
-            setCommitment((myCommitment));
+            const myCommitment = profile.commitments.find(commitment => commitment._id == id);
+            setCommitment(myCommitment);
             setPeople(profile.people);
         };
         getMyData();
-    }, [commitment]);
+    }, []);
 
     return (
         <div className="detailsPageContainer">
             <div className="pageTitle"> About { commitment.name }:</div>
-            <EditCommitmentForm commitment={commitment} people={people} user={user}/>
+            <EditCommitmentForm id={id} commitment={commitment} setCommitment={setCommitment} people={people} user={user}/>
             <div className="detailsContainer">
                     <div>with: { people } </div>
                     <div>starts: { commitment.start }</div>

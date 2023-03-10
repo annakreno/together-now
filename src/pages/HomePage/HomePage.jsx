@@ -1,9 +1,11 @@
 import "./HomePage.css"
+import {Link} from "react-router-dom";
 
-export default function HomePage() {
+export default function HomePage({user}) {
     return (
         <>
         <div id="homePageContainer">
+            { !user ? <Link to="/login">Log In</Link> : ""}
             <div id="title">TOGETHER NOW</div>
             <div id="tagline">
                 <div id="carouselContainer">be a better

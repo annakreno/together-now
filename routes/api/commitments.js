@@ -5,6 +5,7 @@ const commitmentsCtrl = require('../../controllers/api/commitments')
 
 // All paths start with '/api/commitments'
 router.get('/', commitmentsCtrl.index)
-router.post('/', commitmentsCtrl.create)
+router.post('/new', commitmentsCtrl.create)
+router.post('/:id/edit', commitmentsCtrl.update)
 
 module.exports = router;

@@ -19,23 +19,27 @@ export default function App() {
 
   return (
     <main className="App">
-      { 
-        user ?
-          <> 
-            <NavBar user={user} setUser={setUser}/>
-            <Routes>
-              <Route path="/" element={<HomePage user={user}/>} />
-              <Route path="/commitments" element={<CommitmentsList commitments={commitments} setCommitments={setCommitments} user={user} people={people}/>} setPeople={setPeople}/>
-              <Route path="/commitments/:id" element={<CommitmentDetails user={user}/>} />
-              <Route path="/people" element={<PeopleList people={people} setPeople={setPeople} user={user} commitments={commitments}/>} />
-              <Route path="/people/:id" element={<PersonDetails people={people} setPeople={setPeople} user={user} commitments={commitments}/>} />
-              <Route path="/calendar" element={<Calendar commitments={commitments} people={people}/>} />
-              <Route path="*" element={<NotFound />} />
+        { 
+          user ?
+            <> 
+              <NavBar user={user} setUser={setUser}/>
+              <Routes>
+                <Route path="/" element={<HomePage user={user}/>} />
+                <Route path="/commitments" element={<CommitmentsList commitments={commitments} setCommitments={setCommitments} user={user} people={people}/>} setPeople={setPeople}/>
+                <Route path="/commitments/:id" element={<CommitmentDetails user={user}/>} />
+                <Route path="/people" element={<PeopleList people={people} setPeople={setPeople} user={user} commitments={commitments}/>} />
+                <Route path="/people/:id" element={<PersonDetails people={people} setPeople={setPeople} user={user} commitments={commitments}/>} />
+                <Route path="/calendar" element={<Calendar commitments={commitments} people={people}/>} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </>
+          :
+          <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<AuthPage setUser={setUser}/>} />
             </Routes>
-          </>
-        :
-          <AuthPage setUser={setUser}/>
-      }
+            
+        }
     </main>
   );
 }

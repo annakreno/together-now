@@ -14,7 +14,7 @@ export default function NavBar({ user, setUser }) {
             
             <div className='navLogo'><Link to="/">TOGETHER NOW</Link></div>
             
-            <div className="welcomeUser">Welcome, {user.name}!</div>
+            <div className="welcomeUser">Welcome, {user ? user.name : ""}!</div>
 
             <div className="navLinks"><Link to="/commitments">my commitments</Link></div>
 
