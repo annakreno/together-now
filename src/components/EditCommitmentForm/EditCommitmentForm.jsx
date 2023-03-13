@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as commitmentsAPI from '../../utilities/commitments-api';
 
 export default function EditCommitmentForm({id, commitment, setCommitment, people}) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [formDetails, setFormDetails] = useState({
         name: commitment.name,
         start: commitment.start,
@@ -45,7 +45,7 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
                 name: "",
                 start: "",
                 end: "",
-                people: "",
+                people: [],
                 location: "",
                 notes: "",
                 flexible: "",
@@ -94,7 +94,7 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
                     
                         <div className="formInputDiv">
                             <label>Notes: </label>
-                            <textarea name="notes" value={formDetails.notes} onChange={handleChange}></textarea>
+                            <textarea name="notes" value={formDetails.notes} onChange={handleChange}>{formDetails.notes}</textarea>
                         </div>
 
                         <div className="formInputDiv">

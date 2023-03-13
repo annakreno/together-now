@@ -1,8 +1,10 @@
-import {useState } from "react";
-import * as peopleAPI from '../../utilities/people-api';
+import {useState} from "react";
+import { useNavigate } from "react-router-dom";
+import * as commitmentsAPI from '../../utilities/commitments-api';
+import * as peopleAPI from '../../utilities/people-api'
 
-
-export default function NewPersonForm({user, people, commitments, setPeople}) {
+export default function EditPersonForm({id, person, setPerson, commitments}) {
+    // const navigate = useNavigate();
     const [formDetails, setFormDetails] = useState({
         name: "",
         commitments: [],
@@ -30,6 +32,7 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
         evt.preventDefault();
         try {
             const formData = {
+                _id: id,
                 name: formDetails.name,
                 commitments: formDetails.commitments,
                 birthday: formDetails.birthday,
@@ -39,9 +42,8 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
                 notes: formDetails.notes,
                 category: formDetails.category,
             }
-            console.log(formData)
-            const newPerson = await peopleAPI.createPerson(formData);
-            setPeople([...people, newPerson])
+            const updatedPerson = await peopleAPI.updatePerson(formData);
+            setPerson(updatedPerson)
             setFormDetails({
                 name: "",
                 commitments: [],
@@ -51,19 +53,19 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
                 giftIdeas: "",
                 notes: "",
                 category: "",
-            });
+            })
+            
         } catch {
-            setFormDetails({ ...formDetails, error: 'Failed To Add - Try Again' });
+            setFormDetails({ ...formDetails, error: 'Failed To Update - Try Again' });
         }
     }
 
-    return (
-        <div className="addComponent">+
-            <div className='personFormContainer'>
-                <h2>New Person:</h2>
-                <form className="personForm" onSubmit={handleSubmit}>
+    return(
+        <div className="editComponent"> Edit
+                <div className='personFormContainer'>
+                    <h2>Update {person.name}:</h2>
+                    <form className="personForm" onSubmit={handleSubmit}>
                     
-                
                     <div className="formInputDiv">
                         <label>Name: </label>
                         <input name="name" value={formDetails.name} onChange={handleChange}></input>
@@ -83,7 +85,7 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
                         <label>Commitments: </label>
                         <select name="commitments" value={formDetails.commitments} onChange={handleSelect} multiple={true} >
                             {
-                                commitments ? 
+                                commitments.length ? 
                                 commitments.map((commitment, idx) => <option value={commitment._id} key={idx}>{commitment.name}</option>)
                                 : <option>None Added</option>
                             }
@@ -116,16 +118,13 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
                     </div>
                   
                     <div className="buttonDiv">
-                        <button type="submit">Add</button>
+                        <button type="submit">Update</button>
                     </div>
 
                 </form>
-
-                {formDetails.error ? <p>{formDetails.error}</p> : <></>}
-                
-                
-            </div>
-        Add
+                    {formDetails.error ? <p>{formDetails.error}</p> : <></>}
+                </div>
+            + -
         </div>
-      );
+    )
 }

@@ -16,6 +16,11 @@ export default function CommitmentsList({ user }) {
         getMyData();
     }, []);
 
+    function getPerson(personId) {
+        const person = people.find(person => person._id == personId)
+        return person.name
+    }
+
     return (
         <div className="pageContainer">
             <div className="pageTitle">My Commitments:</div>
@@ -28,7 +33,13 @@ export default function CommitmentsList({ user }) {
                             <div className="listComponent" commitment={commitment} key={commitment._id}>
                                 <div className="listCompDetailsWrapper">
                                     <div>{ commitment.name }</div>
-                                    <div>with: { commitment.people }</div>
+                                    <div>with:
+                                        {
+                                        commitment.people ? commitment.people.map(
+                                            (personId, idx) => <li key={idx}>{getPerson(personId)}</li>)
+                                        : <></>
+                                        }
+                                    </div>
                                     <div>starts: { commitment.start }</div>
                                     <div>ends: { commitment.end }</div>
                                     <div>location: { commitment.location }</div>

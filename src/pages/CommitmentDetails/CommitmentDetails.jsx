@@ -1,4 +1,4 @@
-import {useParams, useNavigate} from "react-router-dom"
+import {useParams, useNavigate, Link } from "react-router-dom"
 import {useState, useEffect } from "react";
 import EditCommitmentForm from "../../components/EditCommitmentForm/EditCommitmentForm";
 import * as commitmentsAPI from '../../utilities/commitments-api';
@@ -12,7 +12,7 @@ export default function CommitmentDetails({user}) {
     useEffect(function() {
         async function getMyData() {
             const profile = await commitmentsAPI.getAll();
-            const myCommitment = profile.commitments.find(commitment => commitment._id == id);
+            const myCommitment = profile.commitments.find(commitment => commitment._id === id);
             setCommitment(myCommitment);
             setPeople(profile.people);
         };
@@ -29,12 +29,23 @@ export default function CommitmentDetails({user}) {
         }
     }
 
+    function getPerson(personId) {
+        const person = people.find(person => person._id == personId)
+        return person.name
+    }
+    
     return (
         <div className="detailsPageContainer">
             <div className="pageTitle"> About { commitment.name }:</div>
             <EditCommitmentForm id={id} commitment={commitment} setCommitment={setCommitment} people={people} user={user}/>
             <div className="detailsContainer">
-                <div>with: { people } </div>
+                <div>with:
+                    {
+                    commitment.people ? commitment.people.map(
+                        (personId, idx) => <Link key={idx} to={`/people/${personId}`}><li>{getPerson(personId)}</li></Link>)
+                    : <></>
+                    }   
+                </div>
                 <div>starts: { commitment.start }</div>
                 <div>ends: { commitment.end }</div>
                 <div>location: { commitment.location }</div>
@@ -46,3 +57,5 @@ export default function CommitmentDetails({user}) {
         </div>
     )
 }
+
+ 
