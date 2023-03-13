@@ -9,7 +9,6 @@ module.exports = {
   delete: deleteOne
 };
 
-
 async function create(req, res) {
   try {
     //find profile that matches request user
@@ -22,7 +21,6 @@ async function create(req, res) {
     if (req.body.commitments.length) {
       req.body.commitments.forEach(commitmentId => {
         const commitment = profile.commitments.find(commitment => commitment._id = commitmentId)
-        console.log("each commitment selected during create", commitment)
         commitment.people.push(newPerson._id)
       })
     }
@@ -44,36 +42,29 @@ async function update(req, res) {
     // compare initial and updated commitment values
     const ogCommitments = person.commitments
     const newCommitments = req.body.commitments
-    //for each new commitment, check if it already exists in og commitments
-    let addAcuumulator = newCommitments.length
-    newCommitments.forEach(newCommitmentId => {
-      if (ogCommitments.includes(newCommitmentId)) 
-      addAcuumulator -= 1
-    })
-    //for each old commitment, check if it's present in the new commitments
-    let subtractAcuumulator = ogCommitments.length
-    ogCommitments.forEach(ogCommitmentId => {
-      if (newCommitments.includes(ogCommitmentId))
-      subtractAcuumulator -= 1
-    })
-    // if addition, find added commitments and add person id to their commitment pages
-    if (addAcuumulator > 0) {
+    // if there are new commitments
+    if (newCommitments.length !== 0) {
+      // if each new commitment was not already included in og commitments, add the person id to the commitment page
       newCommitments.forEach(newCommitmentId => {
         if (!ogCommitments.includes(newCommitmentId)) {
           const commitment = profile.commitments.find(commitment => commitment._id == newCommitmentId)
           commitment.people.push(person._id)
+          console.log("commitment to add the person id to", commitment)
         }
       })
     }
-    // if subtraction, find removed commitments and remove person id from their commitment pages
-    if (subtractAcuumulator > 0) {
+    //if there were og commitments
+    if (ogCommitments.length !== 0) {
+      // and if og commitment is no longer included in the new commitments array, remove the person id from the og commitment page
       ogCommitments.forEach(ogCommitmentId => {
-        if (!newCommitments.includes(ogCommitmentId)) {
-          const commitment = profile.commitments.find(commitment => commitment._id == ogCommitmentId)
-          commitment.people.remove(person._id);
+        if (!newCommitments.includes(ogCommitmentId.toString())) {
+          const commitment = profile.commitments.find(commitment => commitment._id == ogCommitmentId.toString())
+          console.log("commitment to remove this person from", commitment)
+          commitment.people.remove(person._id)
         }
       })
     }
+    
     // update person properties with form values
     person.name = req.body.name
     person.commitments = req.body.commitments

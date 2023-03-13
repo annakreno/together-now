@@ -8,7 +8,7 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
         name: commitment.name,
         start: commitment.start,
         end: commitment.end,
-        people: commitment.people,
+        people: [],
         location: commitment.location,
         notes: commitment.notes,
         flexible: commitment.flexible,
@@ -78,7 +78,7 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
                     
                         <div className="formInputDiv">
                             <label>People: </label>
-                            <select name="people" value={formDetails.people} onChange={handleSelect} multiple={true} default={formDetails.people}>
+                            <select name="people" value={formDetails.people} onChange={handleSelect} multiple={true}>
                                 {
                                     people ? 
                                     people.map((person, idx) => <option value={person._id} key={idx}>{person.name}</option>)
