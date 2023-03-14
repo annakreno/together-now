@@ -8,6 +8,7 @@ export default function CommitmentsList({ user }) {
     const [ people, setPeople ] = useState([])
 
     useEffect(function() {
+        
         async function getMyData() {
             const profile = await commitmentsAPI.getAll();
             setCommitments(profile.commitments);
@@ -22,32 +23,42 @@ export default function CommitmentsList({ user }) {
     }
 
     return (
-        <div className="pageContainer">
-            <div className="pageTitle">My Commitments:</div>
+        <div className="pageContainer" id="commitmentPageContainer">
+            <div className="pageTitle">My Commitments</div>
             <div className="listComponentsContainer">
                 <NewCommitmentForm commitments={commitments} setCommitments={setCommitments} user={user} people={people}/>
                 {
                     commitments ? 
                     commitments.map((commitment, idx) =>
-                        <Link to={`/commitments/${commitment._id}`} key={idx}>
-                            <div className="listComponent" commitment={commitment} key={commitment._id}>
-                                <div className="listCompDetailsWrapper">
-                                    <div>{ commitment.name }</div>
-                                    <div>with:
-                                        {
-                                        commitment.people ? commitment.people.map(
-                                            (personId, idx) => <li key={idx}>{getPerson(personId)}</li>)
-                                        : <></>
-                                        }
+                        <div className="listComponentWrapper" key={idx}>
+                            
+                                <div className="cardTitle">{ commitment.name }</div>
+                                <div className="listComponentDetails">
+                                    <div className="labelDivContainer">
+                                        <label>location:</label>
+                                        <div>{ commitment.location } </div>
                                     </div>
-                                    <div>starts: { commitment.start }</div>
-                                    <div>ends: { commitment.end }</div>
-                                    <div>location: { commitment.location }</div>
-                                    <div>notes: { commitment.notes } </div>
-                                    <div>status: { commitment.flexible }</div>
+                                    <div className="labelDivContainer">
+                                        <label>date/time:</label>
+                                        <div> { commitment.start }</div>
+                                    </div>
+                                    <div className="labelDivContainer">
+                                        <label>with:</label>
+                                        <div>
+                                            {
+                                            commitment.people ? commitment.people.map(
+                                                (personId, idx) => <li key={idx}>{getPerson(personId)}</li>)
+                                            : <></>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="labelDivContainer">
+                                        <label>status:</label>
+                                        <div>{ commitment.flexible }</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
+                                <Link className="commitmentDetailsLink" to={`/commitments/${commitment._id}`}> Go To Details </Link>
+                        </div>
                     ) 
                     : <></>
                 }

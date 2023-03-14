@@ -24,7 +24,7 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
-      navigate("/")
+      navigate("/commitments")
     } catch {
       setError('Log In Failed - Try Again');
     }
@@ -32,14 +32,21 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
-      <div className='pageTitle'>Log in:</div>
-      <div className="log-in-form-container, auth-form-container">
+      <div className="auth-form-container" id="log-in-form-container">
+        <div className='componentTitle'>Log in:</div>
         <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <div className='inputDiv'>
+            <label>Email</label>
+            <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+          </div>
+          
+          <div className='inputDiv'>
+            <label>Password</label>
+            <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          </div>
+
           <button type="submit">LOG IN</button>
+
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
