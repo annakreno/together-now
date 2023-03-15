@@ -25,41 +25,59 @@ export default function PeopleList({user}) {
 
     return (
         <div className="pageContainer">
-            <div className="pageTitle">My People:</div>
-
             <div className="listComponentsContainer">
-    
                 <NewPersonForm user={user} commitments={commitments} people={people} setPeople={setPeople} setCommitments={setCommitments}/>
-                
                 {
                     people ?
-                        people.map((person) =>
-                            <Link to={`/people/${person._id}`} key={person._id}>
-                                <div className="listComponent">
-                                    <div>{person.name}</div>
-                                    <div className="listCompDetailsWrapper">
-                                        <div>Commitments: 
-                                        {
-                                            person.commitments ? person.commitments.map(
-                                                (commitmentId, idx) => <li key={commitmentId}>{getCommitment(commitmentId)}</li>)
-                                            : <></>
-                                        }
-                                        </div>
-                                        <div>Birthday: { person.birthday }</div>
-                                        <div>Anniversary: { person.anniversary }</div>
-                                        <div>Address: { person.address }</div>
-                                        <div>Gift Ideas: { person.giftIdeas } </div>
-                                        <div>Notes: { person.notes }</div>
-                                        <div>Category: { person.category }</div>
+                    people.map((person, idx) =>
+                        <div className="listComponentWrapper" key={idx}>
+
+                            <div className="cardTitle">{person.name}</div>
+                            <div className="listComponentDetails">
+
+                                <div className="labelDivContainer">
+                                    <label>Birthday:</label>
+                                    <div>{ person.birthday }</div>
+                                </div>
+                                <div className="labelDivContainer">
+                                    <label>Anniversary:</label>
+                                    <div>{ person.anniversary }</div>
+                                </div>
+                                <div className="labelDivContainer">
+                                    <label>Address:</label>
+                                    <div>{ person.address }</div>
+                                </div>
+                                {/* <div className="labelDivContainer">
+                                    <label>Gift Ideas:</label>
+                                    <div>{ person.giftIdeas }</div>
+                                </div> */}
+                                {/* <div className="labelDivContainer">
+                                    <label>Notes:</label>
+                                    <div>{ person.notes }</div>
+                                </div> */}
+                                <div className="labelDivContainer">
+                                    <label>Category:</label>
+                                    <div>{ person.category }</div>
+                                </div>
+                                <div className="labelDivContainer">
+                                    <label>Commitments:</label>
+                                    <div>
+                                    {
+                                        person.commitments ? person.commitments.map(
+                                            (commitmentId, idx) => <li key={commitmentId}>{getCommitment(commitmentId)}</li>)
+                                        : <li>none</li>
+                                    }
                                     </div>
                                 </div>
-                            </Link>
-                        )
+                                
+                            </div>
+                            <Link className="commitmentDetailsLink" to={`/people/${person._id}`}> Go To Details </Link>
+                            
+                        </div>
+                    )
                     : <p>no people added</p>
-                }
-
+                    }
             </div>
-        
         </div>
     )
 }

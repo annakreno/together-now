@@ -12,6 +12,11 @@ export default function NewCommitmentForm({user, people, commitments, setCommitm
         flexible: "",
         error: "",
     })
+    const [showForm, setShowForm] = useState(false)
+
+    const toggleIsClicked = function() {
+        setShowForm(!showForm)
+    }
 
     function handleChange(evt) {
         setFormDetails({...formDetails,
@@ -59,11 +64,12 @@ export default function NewCommitmentForm({user, people, commitments, setCommitm
     }
 
     return (
-        <div className="addComponent">+
-            <div className='commitmentFormContainer'>
+        <div className="addComponentWrapper">
+            <button className="toggleButton" onClick={toggleIsClicked}>Add</button>
+            <div className={showForm ? "active" : "inactive"}>
+                <div className="exit" onClick={toggleIsClicked}>x</div>
                 <h2>New Commitment:</h2>
-                <form className="addCommitmentForm" onSubmit={handleSubmit}>
-                    
+                <form className="addNewItemForm" onSubmit={handleSubmit}>
                 
                     <div className="formInputDiv">
                         <label>Name: </label>
@@ -113,16 +119,14 @@ export default function NewCommitmentForm({user, people, commitments, setCommitm
                     </div>
                   
                     <div className="buttonDiv">
-                        <button type="submit">Add</button>
+                        <button type="submit" onClick={toggleIsClicked}>Add</button>
                     </div>
 
                 </form>
 
-                <p>{formDetails.error}</p>
-                
+                {formDetails.error ? <p>{formDetails.error}</p> : <></>}
                 
             </div>
-        Add
         </div>
       );
 }

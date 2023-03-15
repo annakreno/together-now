@@ -45,7 +45,7 @@ export default function LoginForm({ setUser }) {
             <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
           </div>
 
-          <button type="submit">LOG IN</button>
+          <div className='button'><button type="submit">LOG IN</button></div>
 
         </form>
       </div>

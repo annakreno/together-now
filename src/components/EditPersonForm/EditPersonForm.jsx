@@ -61,11 +61,9 @@ export default function EditPersonForm({id, person, setPerson, commitments}) {
     }
 
     return(
-        <div className="editComponent"> Edit
-                <div className='personFormContainer'>
-                    <h2>Update {person.name}:</h2>
-                    <form className="personForm" onSubmit={handleSubmit}>
-                    
+        <div className="editComponentWrapper">
+             <div className="pageTitle">Edit: {person.name} </div>
+                <form className="editItemForm" onSubmit={handleSubmit}>
                     <div className="formInputDiv">
                         <label>Name: </label>
                         <input name="name" value={formDetails.name} onChange={handleChange}></input>
@@ -124,7 +122,6 @@ export default function EditPersonForm({id, person, setPerson, commitments}) {
                 </form>
                     {formDetails.error ? <p>{formDetails.error}</p> : <></>}
                 </div>
-            + -
-        </div>
+        
     )
 }

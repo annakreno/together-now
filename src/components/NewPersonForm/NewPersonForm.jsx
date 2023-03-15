@@ -14,6 +14,12 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
         category: "",
     })
 
+    const [showForm, setShowForm] = useState(false)
+
+    const toggleIsClicked = function() {
+        setShowForm(!showForm)
+    }
+
     function handleChange(evt) {
         setFormDetails({...formDetails,
             [evt.target.name]: evt.target.value,
@@ -58,12 +64,13 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
     }
 
     return (
-        <div className="addComponent">+
-            <div className='personFormContainer'>
+        <div className="addComponentWrapper">
+            <button className="toggleButton" onClick={toggleIsClicked}>Add</button>
+            <div className={showForm ? "active" : "inactive"}>
+                <div className="exit" onClick={toggleIsClicked}>x</div>
                 <h2>New Person:</h2>
-                <form className="personForm" onSubmit={handleSubmit}>
-                    
-                
+                <form className="addNewItemForm" onSubmit={handleSubmit}>
+
                     <div className="formInputDiv">
                         <label>Name: </label>
                         <input name="name" value={formDetails.name} onChange={handleChange}></input>
@@ -116,7 +123,7 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
                     </div>
                   
                     <div className="buttonDiv">
-                        <button type="submit">Add</button>
+                        <button type="submit" onClick={toggleIsClicked}>Add</button>
                     </div>
 
                 </form>
@@ -125,7 +132,6 @@ export default function NewPersonForm({user, people, commitments, setPeople}) {
                 
                 
             </div>
-        Add
         </div>
       );
 }

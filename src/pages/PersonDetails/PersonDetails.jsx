@@ -51,29 +51,63 @@ export default function PersonDetails() {
     }
 
     return (
-        <div className="detailsPageContainer">
-            <div className="pageTitle"> About { person.name }:</div>
+        <div className="detailsPageWrapper">
 
-            <EditPersonForm id={id} person={person} setPerson={setPerson} commitments={commitments} />
-            
             <div className="detailsContainer">
-                <div>Birthday: { person.birthday }</div>
-                <div>Anniversary: { person.anniversary }</div>
-                <div>Address: { person.address }</div>
-                <div>Gift Ideas: { person.giftIdeas } </div>
-                <div>Notes: { person.notes }</div>
-                <div>Category: { person.category }</div>
-                <div> Commitments for {person.name}:
-                    {
-                        person.commitments ? person.commitments.map(
-                            (commitmentId, idx) => <Link key={idx} to={`/commitments/${commitmentId}`}><li>{getCommitment(commitmentId)}</li></Link>)
-                        : <></>
-                    }
+
+                <div className="pageTitle">{ person.name }:</div>
+                <div className="details">
+
+                    <div>
+                        <div className="labelContentDivs">
+                            <label>Birthday:</label>
+                            <div>{ person.birthday }</div>
+                        </div>
+                        <div className="labelContentDivs">
+                            <label>Anniversary:</label>
+                            <div>{ person.anniversary }</div>
+                        </div>
+                        <div className="labelContentDivs">
+                            <label>Address:</label>
+                            <div>{ person.address }</div>
+                        </div>
+                        <div className="labelContentDivs">
+                            <label>Gift Ideas:</label>
+                            <div>{ person.giftIdeas }</div>
+                        </div>
+                        <div className="labelContentDivs">
+                            <label>Category:</label>
+                            <div>{ person.category }</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="labelContentDivs">
+                            <label>Commitments:</label>
+                            <div>
+                                {
+                                person.commitments ? person.commitments.map(
+                                    (commitmentId, idx) => <Link key={idx} to={`/commitments/${commitmentId}`}><li>{getCommitment(commitmentId)}</li></Link>)
+                                : <></>
+                                } 
+                            </div>
+                        </div>
+                        <div className="labelContentDivs">
+                            <label>Notes:</label>
+                            <div>{ person.notes }</div>
+                        </div>
+                    </div>
+
+                    <div class="deleteButton"><button onClick={ handleDelete }>Delete</button></div>
+
                 </div>
             </div>
 
-            <button onClick={ handleDelete }>Delete</button>
+            <div className="btnsWrapper">
+                <EditPersonForm id={id} person={person} setPerson={setPerson} commitments={commitments} />
                 { person.error ? <p>{person.error}</p> : <></> }
+            </div>
+            
         </div>
     )
 }

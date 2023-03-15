@@ -35,25 +35,64 @@ export default function CommitmentDetails({user}) {
     }
     
     return (
-        <div className="detailsPageContainer">
-            <div className="pageTitle"> About { commitment.name }:</div>
-            <EditCommitmentForm id={id} commitment={commitment} setCommitment={setCommitment} people={people} user={user}/>
-            <div className="detailsContainer">
-                <div>with:
-                    {
-                    commitment.people ? commitment.people.map(
-                        (personId, idx) => <Link key={idx} to={`/people/${personId}`}><li>{getPerson(personId)}</li></Link>)
-                    : <></>
-                    }   
+        <div className="detailsPageWrapper">
+            
+                <div className="detailsContainer">
+
+                    <div className="pageTitle"> { commitment.name }:</div>
+                    <div className="details">
+
+                        <div>
+                            <div className="labelContentDivs" id="location">
+                                <label >location:</label>
+                                <div>{ commitment.location }</div>
+                            </div>
+
+                            <div className="labelContentDivs" id="starts">
+                                <label>starts: </label>
+                                <div>{ commitment.start }</div>
+                            </div>
+
+                            <div className="labelContentDivs" id="ends">
+                                <label>ends:</label>
+                                <div>{ commitment.end }</div>
+                            </div>
+                            
+                            <div className="labelContentDivs" id="status">
+                                <label>status:</label>
+                                <div>{ commitment.flexible }</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="labelContentDivs" id="with">
+                                <label>with:</label>
+                                <div>
+                                {
+                                commitment.people ? commitment.people.map(
+                                    (personId, idx) => <Link key={idx} to={`/people/${personId}`}><li>{getPerson(personId)}</li></Link>)
+                                : <></>
+                                }   
+                                </div>
+                            </div>
+                            
+                            <div className="labelContentDivs" id="notes">
+                                <label>notes:</label>
+                                <div>{ commitment.notes }</div>
+                            </div>
+                        </div> 
+
+                    </div>
+                    <div class="deleteButton" id="commitmentDeleteBtn"><button onClick={handleDelete}>Delete</button></div>
                 </div>
-                <div>starts: { commitment.start }</div>
-                <div>ends: { commitment.end }</div>
-                <div>location: { commitment.location }</div>
-                <div>notes: { commitment.notes }</div>
-                <div>status: { commitment.flexible }</div>
-            </div>
-            <button onClick={handleDelete}>Delete</button>
-            { commitment.error ? <p>{commitment.error}</p> : <></> }
+
+                <div className="btnsWrapper">
+                    <EditCommitmentForm id={id} commitment={commitment} setCommitment={setCommitment} people={people} user={user}/>
+                    { commitment.error ? <p>{commitment.error}</p> : <></> }
+                </div>
+                    
+                
+                
         </div>
     )
 }

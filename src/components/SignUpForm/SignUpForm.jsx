@@ -59,7 +59,7 @@ export default function SignUpForm() {
               <label>Confirm</label>
               <input type="password" name="confirm" value={signUpForm.confirm} onChange={handleChange} required />
             </div>
-            <button type="submit" disabled={disable}>SIGN UP</button>
+            <div className="button"><button type="submit" disabled={disable}>SIGN UP</button></div>
           </form>
         </div>
         <p className="error-message">&nbsp;{signUpForm.error}</p>

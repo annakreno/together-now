@@ -23,8 +23,7 @@ export default function CommitmentsList({ user }) {
     }
 
     return (
-        <div className="pageContainer" id="commitmentPageContainer">
-            <div className="pageTitle">My Commitments</div>
+        <div className="pageContainer">
             <div className="listComponentsContainer">
                 <NewCommitmentForm commitments={commitments} setCommitments={setCommitments} user={user} people={people}/>
                 {

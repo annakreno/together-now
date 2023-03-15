@@ -1,23 +1,24 @@
 .App {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  width: 100%;
+  width: 100vw;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  z-index: -1;
+  background-color: rgba(221, 255, 237, 1);
 }
 
 #homePageContainer {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
-  background-color: white;
-  background-color: rgba(221, 255, 237, 1);
+  /* background-color: rgba(221, 255, 237, 1); */
   color: rgba(254, 62, 68, 1);
   overflow: hidden;
 }
@@ -42,6 +43,10 @@
   padding: 10px;
   text-decoration: none;
   border-radius: 20px;
+}
+
+#loginLink:hover, #backToHomeLink:hover {
+  background-color: white;
 }
 
 #title {
@@ -143,7 +148,7 @@ span {
   height: 90px;
   z-index: 1;
   background-color: transparent;
-  animation: expand_heart 3s 3s linear;
+  animation: expand_heart 3.25s 3s linear;
 }
 
 #heart::before, #heart::after {
@@ -161,7 +166,7 @@ span {
       transform: scaleX(1);
   }
   25%, 50%, 75% {
-      transform: scaleX(1.6);
+      transform: scaleX(1.3);
   }
   100% {
       transform: scaleX(1);
@@ -187,7 +192,7 @@ span {
   height: 90px;
   border-radius: 50%;
   top: 80vh;
-  animation: bounce 3s linear, flatten 5s linear;
+  animation: bounce 3s linear, flatten 3s linear;
 }
 
 #dot2 {
@@ -195,11 +200,11 @@ span {
 }
 
 #dot3 {
-  animation-delay: 1.5s;
+  animation-delay: 1.25s;
 }
 
 #dot4 {
-  animation-delay: 2s;
+  animation-delay: 1.75s;
 }
 
 #dot5 {
@@ -250,8 +255,7 @@ span {
 }
 
 .pageContainer {
-  background-color: rgba(221, 255, 237, 1);
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -308,91 +312,99 @@ span {
 }
 
 .navContainer {
-  background-color: rgba(255, 123, 126, 1);
-  height: 100vh;
-  width: 300px;
+  background-color: white;
+  width: 100vw;
+  height: 70px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+}
+
+a.active {
+  background-color:  rgba(221, 255, 237, 1);
+  border-radius: 35px 35px 0 0;
 }
 
 .navLogo {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(254, 62, 68, 1);
+  filter: drop-shadow(0 0 7px white);
+  font-weight: bolder;
+  font-size: 30px;
+  padding-left: 10px;
+}
+
+.navLogout, .navLinks, .welcomeUser {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 40px;
-  color: rgba(254, 62, 68, 1);
-  filter: drop-shadow(0 0 5px white);
-  font-weight: bolder;
-  font-size: 30px;
-  margin: 30px 0 0 0;
+  height: 100%;
+}
+
+.navLogout {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  padding-right: 20px;
+}
+
+#navCommitmentsLink, #navPeopleLink, #navCalendarLink, #navLogoutLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 20px;
+  text-decoration: none;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .welcomeUser {
-  color: rgba(221, 255, 237, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 30px;
-  margin: 0 0 20px 0;
+  color: orange;
 }
 
-.navLogout, .navLinks {
-  background-color: rgba(254, 62, 68, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-  margin: 0 0 10px 0;
+#navCommitmentsLink {
+  color:gold;
 }
 
-#navLogoLink, #navCommitmentsLink, #navPeopleLink, #navCalendarLink, #navLogoutLink {
-  color:rgba(221, 255, 237, 1);
-  font-size: 15px;
-  padding: 10px;
-  text-decoration: none;
-  border-radius: 20px;
+#navPeopleLink {
+  color:lightgreen;
 }
 
-.navLinks:hover, .navLogout:hover {
-  background-color: rgba(246, 195, 194, 1);
+#navCalendarLink, #navLogoutLink {
+  color: lightskyblue;
 }
 
-#commitmentPageContainer {
-  border: 1px solid orange;
-}
 
-.pageTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0 0 0;
+#navLogoutLink {
   color: rgba(254, 62, 68, 1);
-  filter: drop-shadow(0 0 5px white);
-  font-weight: bolder;
-  font-size: 30px;
 }
+
+#navCommitmentsLink:hover, #navPeopleLink:hover, #navCalendarLink:hover, #navLogoutLink:hover {
+  background-color:  rgba(221, 255, 237, 1);
+  border-radius: 35px 35px 0 0;
+  text-decoration: underline;
+}
+
+/* commitments list page */
 
 .listComponentsContainer {
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(300px, auto);
-  justify-items: start;
+  grid-template-rows: auto;
+  justify-items: center;
   align-items: start;
-  padding: 5%;
-  margin: 0 0 0 3%;
-  z-index: -1;
+  z-index: 0;
 }
 
 .listComponentWrapper {
@@ -402,11 +414,12 @@ span {
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 1fr 10fr 1fr;
-  filter: drop-shadow(0 0 5px gray);
+  filter: drop-shadow(0 0 5px lightgray);
   border-radius: 3px;
   z-index: -1;
   padding: 5%;
   overflow: hidden;
+  margin: 10% 0 0 0;
 }
 
 .cardTitle {
@@ -414,7 +427,9 @@ span {
   font-weight: bolder ;
   color: rgba(254, 62, 68, 1);
   font-size: 20px;
+  padding-bottom: 10px;
   margin: 0 0 10px 0;
+  border-bottom: 1px solid lightgray;
 }
 
 div.listComponentDetails {
@@ -428,7 +443,7 @@ div.labelDivContainer {
 }
 
 div.labelDivContainer > label {
-  color:rgba(246, 195, 194, 1);
+  color:orange;
 }
 
 a.commitmentDetailsLink {
@@ -436,89 +451,262 @@ a.commitmentDetailsLink {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 123, 126, 1);
   height: 25px;
   width: 100%;
-  color: rgba(221, 255, 237, 1);
-  border: 2px solid  rgba(254, 62, 68, 1);
+  color: white;
+  background-color: rgba(254, 62, 68, 1); 
+  border: 2px solid  rgb(252, 167, 169);
+  border-radius: 25px;
   text-decoration: none;
 }
 
-.detailsPageContainer {
-  background-color: rgba(221, 255, 237, 1);
-  height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr 5fr;
-  justify-items: center;
-  align-items: center;
+a.commitmentDetailsLink:hover {
+  color: rgba(254, 62, 68, 1);
+  background-color: white;
+  border: 2px solid  rgba(254, 62, 68, 1);
+  border-radius: 25px;
+  text-decoration: none;
 }
 
-.addComponent {
-  background-color: rgb(255, 210, 209);
-  height: 335px;
-  width: 335px;
+/* add new item */
+
+.addComponentWrapper {
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: drop-shadow(0 0 5px gray);
-  border-radius: 3px;
   position: static;
+  height: 345px;
+  width: 345px;
+  filter: drop-shadow(0 0 5px lightgray);
+  border-radius: 3px;
+  z-index: 10;
+  margin: 10% 0 0 0;
+}
+
+div.inactive {
+  overflow: hidden;
+  height: 0px;
+  width: 0px;
+  color: white;
+  border-radius: 25px;
   z-index: 10;
 }
 
-.commitmentFormContainer {
-  overflow: hidden;
-  height: 0;
-  width: 0;
-  padding: 5px;
-  border-radius: 15px;
+.toggleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 50px;
 }
 
+.toggleButton:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 50px;
+  color: rgba(254, 62, 68, 1);
+  background-color: white; 
+  border: 2px solid rgba(254, 62, 68, 1);
+  border-radius: 25px;
+}
 
-.commitmentFormContainer:hover {
-  background: white;
-  color: rgb(223, 53, 59);
-  position: absolute;
-  left: -15%;
-  right: 0;
-  top: -20%;
-  bottom: 0;
-  width: 75vw;
-  height: 75vh;
+div.active {
+  background-color: white;
+  color: white;
+  overflow: visible;
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: .1fr .5fr 10fr;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10fr;
+  filter: drop-shadow(0 0 5px lightgray);
+  border-radius: 3px;
+  position: relative;
+  top: 120px;
+  left: 440px;
+  height: 190%;
   z-index: 10;
 }
 
-.addCommitmentForm {
-  grid-column: 1/2;
+div.exit {
+  grid-row: 1/2;
+  width: 97%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: rgb(223, 53, 59);
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+div.exit:hover {
+  color: pink;
+}
+
+div.active > h2 {
+  color: rgb(223, 53, 59);
   grid-row: 2/3;
+  width: 1300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addNewItemForm {
+  grid-row: 3/4;
   display: grid;
   align-items: center;
   justify-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: 7, 1fr;
+  width: 100%;
   height: 100%;
-  width: 75%;
-  z-index: 10;
+  z-index: 100;
+  color: rgb(223, 53, 59);
+}
 
+/* details page */
+
+.detailsPageWrapper {
+  background-color: rgba(221, 255, 237, 1);
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: start;
+  padding-top: 3%;
+  z-index: 0;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  width: 75%;
+  height: 75%;
+  filter: drop-shadow(0 0 5px lightgray);
+  border-radius: 3px;
+}
+
+div.pageTitle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-weight: bolder;
+  font-size: 20px;
+  color:rgba(254, 62, 68, 1);
+  border-bottom: 1px solid rgba(254, 62, 68, 1);
+  width: 75%;
+  padding-bottom: 20px;
+  margin: 40px 0 20px 0;
+}
+
+.details {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: start;
+  margin: 20px 20px 20px 20px;
+  /* padding-top: 10px; */
+}
+
+.labelContentDivs > label {
+  color: orange;
+  padding-bottom: 10px;
+}
+
+.labelContentDivs {
+  padding-bottom: 20px;
+}
+
+button {
+  margin: 0px 20px 20px 20px;
+  height: 25px;
+  width: 100%;
+  color: white;
+  background-color: rgba(254, 62, 68, 1);
+  border: 2px solid  rgb(252, 167, 169);
+  border-radius: 25px;
+}
+
+button:hover {
+  margin: 0px 20px 20px 20px;
+  width: 100%;
+  color: rgba(254, 62, 68, 1);
+  background-color: white; 
+  border: 2px solid rgba(254, 62, 68, 1);
+  border-radius: 25px;
+}
+
+.btnsWrapper {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 75%;
+  height: 75%;
+  filter: drop-shadow(0 0 5px lightgray);
+  border-radius: 3px;
+}
+
+.editComponentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 100px;
+}
+
+.editItemForm {
+  grid-row: 3/4;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 7, 1fr;
+  width: 100%;
+  height: 80%;
+  color: rgb(223, 53, 59);
 }
 
 .formInputDiv {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 label {
   display: inline-block;
-  width: 60px;
+  width: 100px;
 }
 
 input {
@@ -532,36 +720,4 @@ select {
 
 textarea {
   width: 302px;
-}
-
-.buttonDiv {
-  width: 57%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button {
-  background-color: rgba(255, 123, 126, 1);
-  height: 25px;
-  width: 200px;
-  color: rgba(221, 255, 237, 1);
-  border: 2px solid  rgba(254, 62, 68, 1);
-
-}
-
-button:hover {
-  background-color: rgba(254, 62, 68, 1);
-  height: 25px;
-  width: 200px;
-  border: 2px solid  rgba(255, 123, 126, 1);
-
-}
-
-.editComponent {
-  height: 100%;
-  width: 100%;
-  background-color: aqua;
-  display: flex;
-  justify-content: center;
 }

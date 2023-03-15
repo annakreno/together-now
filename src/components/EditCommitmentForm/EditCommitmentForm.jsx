@@ -57,10 +57,9 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
     }
 
     return(
-        <div className="editComponent"> Edit
-                <div className='commitmentFormContainer'>
-                    <h2>Update {commitment.name}:</h2>
-                    <form className="editCommitmentForm" onSubmit={handleSubmit}>
+        <div className="editComponentWrapper">
+                    <div className="pageTitle">Edit: {commitment.name}</div>
+                    <form className="editItemForm" onSubmit={handleSubmit}>
                         <div className="formInputDiv">
                             <label>Name: </label>
                             <input name="name" value={formDetails.name} onChange={handleChange} default={formDetails.name}></input>
@@ -113,8 +112,6 @@ export default function EditCommitmentForm({id, commitment, setCommitment, peopl
                         </div>
                     </form>
                     {formDetails.error ? <p>{formDetails.error}</p> : <></>}
-                </div>
-            + -
         </div>
     )
 }
