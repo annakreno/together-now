@@ -17,19 +17,18 @@ export default function PeopleList({user}) {
     }, []);
 
     function getCommitment(commitmentId) {
-        const commitment = commitments.find(commitment => commitment._id == commitmentId)
-        return commitment.name
+        
+            const commitment = commitments.find(commitment => commitment._id == commitmentId)
+            return commitment.name
+        
     }
     
-    
-
     return (
         <div className="pageContainer">
             <div className="listComponentsContainer">
                 <NewPersonForm user={user} commitments={commitments} people={people} setPeople={setPeople} setCommitments={setCommitments}/>
                 {
-                    people ?
-                    people.map((person, idx) =>
+                    people ? people.map((person, idx) =>
                         <div className="listComponentWrapper" key={idx}>
 
                             <div className="cardTitle">{person.name}</div>
@@ -47,14 +46,6 @@ export default function PeopleList({user}) {
                                     <label>Address:</label>
                                     <div>{ person.address }</div>
                                 </div>
-                                {/* <div className="labelDivContainer">
-                                    <label>Gift Ideas:</label>
-                                    <div>{ person.giftIdeas }</div>
-                                </div> */}
-                                {/* <div className="labelDivContainer">
-                                    <label>Notes:</label>
-                                    <div>{ person.notes }</div>
-                                </div> */}
                                 <div className="labelDivContainer">
                                     <label>Category:</label>
                                     <div>{ person.category }</div>
@@ -62,11 +53,7 @@ export default function PeopleList({user}) {
                                 <div className="labelDivContainer">
                                     <label>Commitments:</label>
                                     <div>
-                                    {
-                                        person.commitments ? person.commitments.map(
-                                            (commitmentId, idx) => <li key={commitmentId}>{getCommitment(commitmentId)}</li>)
-                                        : <li>none</li>
-                                    }
+                                    { person.commitments ? person.commitments.map((commitmentId, idx) => <li key={commitmentId}>{getCommitment(commitmentId)}</li>) : <></>}
                                     </div>
                                 </div>
                                 

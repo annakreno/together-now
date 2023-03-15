@@ -89,7 +89,7 @@ export default function PersonDetails() {
                                 person.commitments ? person.commitments.map(
                                     (commitmentId, idx) => <Link key={idx} to={`/commitments/${commitmentId}`}><li>{getCommitment(commitmentId)}</li></Link>)
                                 : <></>
-                                } 
+                                }
                             </div>
                         </div>
                         <div className="labelContentDivs">
@@ -98,7 +98,7 @@ export default function PersonDetails() {
                         </div>
                     </div>
 
-                    <div class="deleteButton"><button onClick={ handleDelete }>Delete</button></div>
+                    <div className="deleteButton"><button onClick={ handleDelete }>Delete</button></div>
 
                 </div>
             </div>
