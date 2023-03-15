@@ -87,16 +87,19 @@ async function deleteOne(req, res) {
   try {
     //find and return profile that matches request user
     const profile = await Profile.findOne({user: req.user._id});
-    //remove specified person from the profile
+    // if person had associated commitments, remove them from those commitments
+    const person = profile.people.find(person => person._id == req.params.id)
+    if (person.commitments.length !== 0) {
+      profile.commitments.forEach(commitment => {
+        if (commitment.people.includes(req.params.id)) {
+          commitment.people.remove(req.params.id);
+        }
+      })
+    }
+    //remove person from the profile
     profile.people.remove(req.params.id);
-    // also remove person from any associated commitments' people list
-    profile.commitments.forEach(commitment => {
-      if (commitment.people.includes(req.params.id)) {
-        commitment.people.remove(req.params.id);
-      }
-    })
     profile.save();
-    res.json("person deleted")
+    res.json(profile)
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });

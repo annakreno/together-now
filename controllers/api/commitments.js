@@ -105,7 +105,7 @@ async function deleteOne(req, res) {
       }
     })
     profile.save();
-    res.json("commitment deleted")
+    res.json(profile)
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });
