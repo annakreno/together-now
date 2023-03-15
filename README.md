@@ -34,8 +34,9 @@ Person details page:
 4. Node.js
 5. MongoDB
 
-Getting Started:
+
 *** Deployed app on Heroku:
+https://together-now-app.herokuapp.com/
 
 *** Trello Board:
 https://trello.com/invite/b/z64mqsCD/ATTI55bda025af63e1bbf75a05b27f6247cf11F13852/togethernow
